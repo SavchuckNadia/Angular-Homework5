@@ -1,0 +1,16 @@
+header {
+    height: 70px;
+    line-height: 65px;
+    background-color: #d3d3d32b;
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #cfcfcf;
+  }
+  @media(max-width: 1200px){
+    header{
+       font-size: 22px;
+    }
+   
+}

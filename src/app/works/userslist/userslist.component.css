@@ -1,0 +1,155 @@
+* {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .wrapper {
+    margin: 71px 62px 0px 100px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  label {
+    color: rgb(74, 74, 74);
+    font-size: 16px;
+  }
+  .block-form{
+    width: 86%;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-family: 'Noto Sans', sans-serif;
+  }
+  
+  form input {
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #80808080;
+    padding: 15px 0 15px 15px;
+    margin: 10px 0 20px 0;
+  }
+  
+  input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    color: grey;
+  }
+  
+  input[type='text']:focus,
+  input[type='password']:focus {
+  
+    box-shadow: 0 0 0 3px rgba(140, 201, 255, 0.489);
+    border: 1px solid rgba(105, 158, 237, 0.784);
+  }
+  
+  .buttonForm {
+    font-size: 17px;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid green;
+    color: white;
+    background-color: #19b319;
+  }
+  
+  .add {
+    display: block;
+  }
+  
+  .edit {
+    background-color: rgb(6 163 170);
+  }
+  
+  .add:hover {
+    background-color: #31a031;
+  }
+  
+  .add:focus {
+    box-shadow: 0 0 0 3px #27d22779;
+    border: 1px solid green;
+  }
+  
+  .edit:hover {
+    background-color: rgb(13 130 135);
+  }
+  
+  .table,
+  .table-block {
+    margin: 13px 30px 0 15px;
+    width: 98%;
+  }
+  
+  thead {
+    margin: 25px 20px 0 40px;
+    border-bottom: 2px solid rgb(222, 222, 222);
+    border-top: 1px solid rgb(222, 222, 222);
+    font-weight: bold;
+    padding: 10px 0 13px 20px;
+  }
+  
+  th {
+    font-size: 16px;
+    padding: 13px;
+  
+  }
+  
+  .tr td {
+    padding: 14px;
+    font-size: 16px;
+  }
+  
+  td {
+    padding: 14px 10px 14px 10px;
+    border-bottom: none;
+    border-top: 1px solid rgb(222, 222, 222);
+  }
+  
+  input.ng-touched.ng-invalid {
+    border: 2px solid #cd1d3ee8;
+  }
+  
+  input.ng-touched.ng-valid {
+    border: 2px solid lightgray;
+  }
+  
+  .buttonDelete {
+    width: 76px;
+    height: 45px;
+  }
+  
+  .buttonEdit {
+    width: 60px;
+    height: 45px;
+  }
+
+  @media(max-width: 768px){
+    .wrapper {
+        flex-direction: column;
+    margin: 71px 10px 0px 10px;
+
+    }
+    .block-form.form{
+      width: 100%;
+    }
+    .table-block{
+       margin: 13px 0px 0 0px;
+       width: 100%;  
+    }
+    .table{
+      margin: 5px;
+      font-size: 10px;
+    }
+    th{
+      font-size: 14px;
+      padding: 3px;
+    }
+    form input, .add {
+      height: 30px;
+    } 
+}

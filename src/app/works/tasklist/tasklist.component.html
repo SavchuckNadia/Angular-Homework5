@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <div class="user-info">
+        <p> Count of task: <span>{{arrTasksParent.length}}</span></p> 
+    </div>
+    <hr>
+    <div class="input-block">
+        <input type="text" name="" id="task" class="form-control" [(ngModel)]="newTask">
+        <button type="button" class="add" (click)="send()" [disabled] ="!newTask">add</button>
+    </div>
+  <app-tasklistchild [taskMessage]= "arrTasksParent"></app-tasklistchild>
+  </div>

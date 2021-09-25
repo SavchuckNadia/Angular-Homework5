@@ -1,0 +1,21 @@
+<div class="wrapper container-fluid">
+    <div class="block">
+        <p>Bad words: <span class="badWords" *ngFor="let word of arrBadWords">
+            {{word}}
+        </span></p>
+        <div class="mb-3 block-1">
+            <input type="text" class="form-control" id="writeWord" [(ngModel)]="newWord" name="newWord"  [attr.placeholder] = "checkWord ?'Please write a word!' : 'word here..'" [class.redBorder] = "checkWord">
+            <div class="btns">
+                <button type="button" class="btn btn-warning" (click)="addWord()" >Add</button>
+                <button type="button" class="btn btn-danger" (click)="resetArrBadWords()">Reset</button>
+            </div>
+        </div>
+        <div class="mb-3">
+            <textarea placeholder="text here.." class="form-control" id="writeText" rows="3" [(ngModel)]="text" name="text" [attr.placeholder] = "checkText ?'Please write a text!' : 'text here..'"  [class.redBorder] = "checkText"></textarea>
+        </div>
+        <button type="button" class="btnCenzor" (click)="cenzor()">Cenzor</button>
+    </div>
+</div>
+
+
+    

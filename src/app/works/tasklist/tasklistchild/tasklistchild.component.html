@@ -1,0 +1,32 @@
+<div class="content  table-responsive" >
+    <table class="table table-hover">
+        <thead>
+            <th>#</th>
+            <th>Task</th>
+            <th>Check</th>
+            <th>DONE/IN PROGRESS</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let task of taskMessage; index as i; count as allCount">
+                <td [style.font-weight] ="700">{{i+1}}</td>
+              <td>{{task.task}}</td>
+
+                <td><input type="checkbox" (change)="changeStatus(task)" [checked]="task.status"></td>
+                <td><span [ngStyle]="{'color': task.status ? 'green' : 'red'}">{{task.status ? 'Done' : 'In progress'}}</span></td>
+              <td><button type="button" class="btn btn-warning edit"(click)="edit(i)">edit</button></td>
+              <td><button type="button" class="btn btn-danger delete" [disabled]="!task.status || isEdit" (click)="deleteTask(i)">delete</button></td>
+            </tr>
+            <tr *ngIf="isEdit">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><input type="text" class=" editField" [(ngModel)]="editTask"></td>
+                <td><button type="button" class="save" (click)="saveTask()">save</button>
+                </td>
+            </tr>
+    </table>
+</div>
+
+

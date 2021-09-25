@@ -1,0 +1,44 @@
+<div class="wrapper">
+  <div class="block-form">
+    <form name="f1" id="f1" #userForm="ngForm">
+      <label for="">Login</label>
+      <input class="login input" type="text" name="login" placeholder="Enter password" required
+        pattern="^[a-zA-Z]{4,16}$" [(ngModel)]="newLogin" #login="ngModel">
+      <label for="">Password</label>
+      <input class="password input" type="password" placeholder="Enter password" name="password" required
+        pattern="^[a-zA-Z0-9_.-]{4,16}$" [(ngModel)]="newPassword" #password="ngModel">
+      <label for="">Email address</label>
+      <input class="email input" type="email" placeholder="Enter email" name="email" required
+        pattern="^[a-z]+[a-z0-9_.-]*@[a-z]+\.[a-z]+$" [(ngModel)]="newEmail" #email="ngModel">
+    </form>
+    <input *ngIf="!isEdit" class="buttonForm  add" type="button" name="tb" value="Add user"
+      (click)="addUser() ; userForm.resetForm()" [disabled]=" login.invalid || password.invalid || email.invalid ">
+    <input *ngIf="isEdit" class="buttonForm edit" data-name="saveChanges" type="button" name="tb" value="Save edit user"
+      (click)="saveUser() ;userForm.resetForm()" [disabled]=" login.invalid || password.invalid || email.invalid ">
+  </div>
+  <div class="table-block table-responsive">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Login</th>
+          <th scope="col">Password</th>
+          <th scope="col">Email</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let user of users; let i = index " data-index="i">
+          <td>{{i + 1}}</td>
+          <td>{{user.login}}</td>
+          <td>{{user.password}}</td>
+          <td>{{user.email}}</td>
+          <td><button type="button" class="btn-warning btn buttonEdit" (click)="editUser(i)">Edit</button></td>
+          <td><button type="button" class="btn-danger btn buttonDelete" [disabled]="isEdit"
+              (click)="deleteUser(i)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="wrapper container-fluid">
+  <div class="search-block">
+    <p>My phone book!</p>
+  </div>
+  <hr>
+  <div class="input-block">
+    <input type="text" id="task" class="form-control" placeholder="search text goes here" [(ngModel)]="field">
+    <button type="button" class="add" data-bs-toggle="modal" data-bs-target="#staticBackdrop">add phone</button>
+  </div>
+  <div class="content table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <th (click)=" click1 =true ; sortFirstName(); click2 =false; click3 =false "> First name
+          <span *ngIf="firstArrow &&  click1 && !click2 ">&#9660;</span>
+          <span *ngIf="!firstArrow &&  click1 && !click2">&#9650;</span>
+        </th>
+        <th (click)="click2 =true;click1 =false ; click3 =false; sortLastName()">
+          Last name
+          <span *ngIf="secondArrow &&  click2">&#9660;</span>
+          <span *ngIf="!secondArrow &&  click2">&#9650;</span>
+        </th>
+        <th (click)=" click3 = true; click1 =false; click2 =false; sortPhoneNumber()">Number
+          <span *ngIf="thirdArrow  &&  click3">&#9660;</span>
+          <span *ngIf="!thirdArrow &&  click3">&#9650;</span>
+        </th>
+        <th>edit</th>
+        <th>delete</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of arrPhoneNumbers | search:field  ;let i = index;">
+          <td>{{user.firstName|titlecase}}</td>
+          <td>{{user.lastName|titlecase}}</td>
+          <td>{{user.phoneNumber}}</td>
+          <td data-id="user.id"><button type="button" class="btn btn-warning edit"
+              (click)="sendEdit(user.id); isEdit=true" data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop">Edit</button></td>
+          <td><button type="button" class="btn btn-danger delete" (click)="delete(user.id)">Delete</button></td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" style=" max-width: 38%;" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add phone</h5>
+        <button *ngIf="isEdit" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)=" saveE() ;userForm.resetForm() ;reset() ; isEdit =false; "></button>
+        <button *ngIf="!isEdit" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="userForm.resetForm() ;reset()"></button>
+      </div>
+      <div class="modal-body">
+        <form name="f2" #userForm="ngForm">
+          <input type="text" name="editFirst" class="form-control" required pattern="^[a-zA-Z]{3,16}$"
+            placeholder="first name goes here" [(ngModel)]=" firstNameE" #first1="ngModel"
+            [ngModel]="toEdit?  toEdit.firstName : ''">
+          <input type="text" name="second" class="form-control" required
+            pattern="^[a-z-A-Z]*\s?[a-z-A-Z]*\s?[a-z-A-Z]*$" placeholder="second name goes here"
+            [(ngModel)]="  lastNameE" #second1="ngModel" [ngModel]="toEdit ? toEdit.lastName : ''">
+          <input type="text" name="third" class="form-control" required pattern="^[0-9]{10}$"
+            placeholder="number phone goes here" [(ngModel)]="  phoneNumberE" #third1="ngModel"
+            [ngModel]="toEdit ? toEdit.phoneNumber : '' ">
+        </form>
+        <div class="modal-footer">
+          <button *ngIf="!isEdit" type="button" class="btn btn-primary " data-bs-dismiss="modal"
+            (click)=" save() ; userForm.resetForm() "
+            [disabled]="  first1.invalid || second1.invalid || third1.invalid   ">Save</button>
+          <button *ngIf="isEdit" type="button" class="btn btn-primary " data-bs-dismiss="modal"
+            (click)="  saveE() ;userForm.resetForm() ;reset() ; isEdit =false; "
+            [disabled]="  first1.invalid || second1.invalid || third1.invalid   ">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
